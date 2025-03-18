@@ -6,6 +6,7 @@ from page_objects.carts import CartPage
 from page_objects.checkout import CheckoutPage
 from page_objects.checkout_overview import CheckoutOverview
 from page_objects.checkout_complete import CheckoutComplete
+from selenium.webdriver.chrome.service import Service
 from faker import Faker
 import time
 
@@ -13,7 +14,9 @@ class AddToCartCheckoutTest1(unittest.TestCase):
 
     def setUp(self):
         # Initialize WebDriver
-        self.driver = webdriver.Chrome()
+        service = Service(executable_path='./driver/chromedriver.exe')
+        options = webdriver.ChromeOptions()
+        self.driver = webdriver.Chrome(service=service, options=options)
         self.driver.maximize_window()
         self.driver.get("https://www.saucedemo.com/") 
         self.fake = Faker()

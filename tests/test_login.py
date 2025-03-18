@@ -1,12 +1,16 @@
 import unittest
 from selenium import webdriver
 from page_objects.login import LoginPage
+from selenium.webdriver.chrome.service import Service
 import time
 
 class LoginTest(unittest.TestCase):
     
     def setUp(self):
-        self.driver = webdriver.Chrome()
+        #Initialize webdriver 
+        service = Service(executable_path='./driver/chromedriver.exe')
+        options = webdriver.ChromeOptions()
+        self.driver = webdriver.Chrome(service=service, options=options)
         self.driver.get("https://www.saucedemo.com/")  # login URL
         self.driver.maximize_window()
 
